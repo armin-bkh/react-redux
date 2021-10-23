@@ -1,3 +1,5 @@
+import { FETCH_USERS_FAILURE, FETCH_USERS_SUCCESS, FETCH_USERS_REQUEST } from "./usersTypes";
+
 const initialState = {
   loading: false,
   users: [],
