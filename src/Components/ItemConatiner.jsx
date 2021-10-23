@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch, ownProps) =>{
     return { buyItems: itemDispatch }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemContainer);
+export default connect(null, mapDispatchToProps)(ItemContainer);
