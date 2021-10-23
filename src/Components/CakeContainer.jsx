@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { buyCake } from "./Redux/cake/cakeActions";
 
 const CakeContainer = (props) => {
