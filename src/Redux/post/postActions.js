@@ -1,4 +1,8 @@
-import { FETCH_POST_REQUEST, FETCH_POST_SUCCESS } from "./postTypes";
+import {
+  FETCH_POST_FAILURE,
+  FETCH_POST_REQUEST,
+  FETCH_POST_SUCCESS,
+} from "./postTypes";
 
 export const fetchPostRequset = (id) => {
   return { type: FETCH_POST_REQUEST, payload: id };
@@ -9,5 +13,5 @@ export const fetchPostSuccess = (post) => {
 };
 
 export const fetchPostFailure = (error) => {
-  return { type: FETCH_POST_REQUEST, payload: error };
+  return { type: FETCH_POST_FAILURE, payload: error };
 };

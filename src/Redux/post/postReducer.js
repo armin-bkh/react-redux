@@ -4,18 +4,18 @@ import {
   FETCH_POST_SUCCESS,
 } from "./postTypes";
 
-const initialState = { post: null, loading: false, error: null };
+const initialState = { post: {}, loading: false, error: null };
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_POST_REQUEST: {
-      return { ...state, loading: true, error: null, post: null };
+      return { ...state, loading: true, error: null, post: {} };
     }
     case FETCH_POST_SUCCESS: {
       return { ...state, loading: false, error: null, post: action.payload };
     }
     case FETCH_POST_FAILURE: {
-      return { ...state, error: action.payload, post: null, loading: false };
+      return { ...state, error: action.payload, post: {}, loading: false };
     }
     default:
       return state;
