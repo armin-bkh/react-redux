@@ -16,3 +16,5 @@ function* fetchPost(action) {
 export function* watchFetchPost() {
   yield takeEvery(FETCH_POST_REQUEST, fetchPost);
 }
+
+export function* watchPostPost() {}
