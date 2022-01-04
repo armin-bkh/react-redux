@@ -1,13 +1,20 @@
 import { call, put, takeEvery } from "@redux-saga/core/effects";
+import deletePost from "../../Services/deletePost";
 import getPosts from "../../Services/getPosts";
 import postPost from "../../Services/postPost";
 import {
+  deletePostsFailure,
+  deletePostsSuccess,
   fetchPostsFailure,
   fetchPostsSuccess,
   postPostsFailure,
   postPostsSuccess,
 } from "../post/postActions";
-import { FETCH_POSTS_REQUEST, POST_POSTS_REQUEST } from "../post/postTypes";
+import {
+  DELETE_POSTS_REQUEST,
+  FETCH_POSTS_REQUEST,
+  POST_POSTS_REQUEST,
+} from "../post/postTypes";
 
 function* fetchPosts() {
   try {
@@ -22,9 +29,9 @@ export function* watchFetchPost() {
   yield takeEvery(FETCH_POSTS_REQUEST, fetchPosts);
 }
 
-function* postPosts(action) {
+function* postPosts({ payload }) {
   try {
-    const { data } = yield call(() => postPost(action.payload));
+    const { data } = yield call(() => postPost(payload));
     yield put(postPostsSuccess(data));
   } catch (error) {
     yield put(postPostsFailure(error.message));
@@ -33,4 +40,17 @@ function* postPosts(action) {
 
 export function* watchPostPost() {
   yield takeEvery(POST_POSTS_REQUEST, postPosts);
+}
+
+function* deletePosts({ payload }) {
+  try {
+    const { data } = yield call(() => deletePost(payload));
+    yield put(deletePostsSuccess(payload));
+  } catch (error) {
+    yield put(deletePostsFailure(error.message));
+  }
+}
+
+export function* watchDeletePost() {
+  yield takeEvery(DELETE_POSTS_REQUEST, deletePosts);
 }

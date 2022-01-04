@@ -1,4 +1,7 @@
 import {
+  DELETE_POSTS_FAILURE,
+  DELETE_POSTS_REQUEST,
+  DELETE_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
@@ -23,10 +26,19 @@ const postReducer = (state = initialState, action) => {
     case POST_POSTS_SUCCESS: {
       const clonePosts = [...state.posts];
       clonePosts.push(action.payload);
-      return { ...state, error: null, posts: clonePosts };
+      return { ...state, error: null, posts: clonePosts, loading: false };
     }
     case POST_POSTS_FAILURE: {
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false };
+    }
+    case DELETE_POSTS_SUCCESS: {
+      const filteredPosts = state.posts.filter(
+        (post) => post.id !== action.payload
+      );
+      return { ...state, error: null, posts: filteredPosts, loading: false };
+    }
+    case DELETE_POSTS_FAILURE: {
+      return { ...state, error: action.payload, loading: false };
     }
     default:
       return state;
