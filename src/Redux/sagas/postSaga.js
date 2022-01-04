@@ -44,7 +44,7 @@ export function* watchPostPost() {
 
 function* deletePosts({ payload }) {
   try {
-    const { data } = yield call(() => deletePost(payload));
+    yield call(() => deletePost(payload));
     yield put(deletePostsSuccess(payload));
   } catch (error) {
     yield put(deletePostsFailure(error.message));

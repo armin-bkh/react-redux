@@ -14,10 +14,6 @@ const PostSaga = () => {
     dispatch(fetchPostsRequset());
   }, []);
 
-  const deletePostHandler = (id) => {
-    console.log(id);
-    dispatch(deletePostsRequest(id));
-  };
   return (
     <div>
       <h1>redux-sag middleware</h1>
@@ -41,7 +37,9 @@ const PostSaga = () => {
               <div style={{ marginBottom: "2px" }}>{post.title}</div>
               <div>{post.body}</div>
             </div>
-            <button onClick={() => deletePostHandler(post.id)}>delete</button>
+            <button onClick={() => dispatch(deletePostsRequest(post.id))}>
+              delete
+            </button>
           </div>
         ))
       ) : (
