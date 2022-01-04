@@ -3,8 +3,9 @@ import CakeContainer from "./Components/CakeContainer";
 import CakePayloadContainer from "./Components/CakePayloadContainer";
 import IceCreamContainer from "./Components/iceCreamContainer";
 import ItemConatiner from "./Components/ItemConatiner";
-import store from "./Components/Redux/store";
+import store from "./Redux/store";
 import UsersContainer from "./Components/UsersContainer";
+import PostSaga from "./Components/PostSaga";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <CakeContainer />
         <IceCreamContainer />
         <CakePayloadContainer /> */}
-        <UsersContainer />
+        {/* <UsersContainer /> */}
+        <PostSaga />
       </Provider>
     </div>
   );

@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { connect } from "react-redux";
-import { buyCake } from "./Redux/cake/cakeActions";
+import { buyCake } from "../Redux/cake/cakeActions";
 
 const CakeContainer = (props) => {
-    const numOfCake = useSelector(state => state.cakes.numOfCake)
-    const dispatch = useDispatch();
+  const numOfCake = useSelector((state) => state.cakes.numOfCake);
+  const dispatch = useDispatch();
   return (
     <div>
       <h1>Number of cakes - {numOfCake}</h1>

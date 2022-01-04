@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { FetchUsers } from "./Redux";
+import { FetchUsers } from "../Redux";
 
 const UsersContainer = (props) => {
   const users = useSelector(({ users }) => users);
