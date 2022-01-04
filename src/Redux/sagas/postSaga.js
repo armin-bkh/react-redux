@@ -1,20 +1,17 @@
 import { call, put, takeEvery } from "@redux-saga/core/effects";
-import axios from "axios";
-import { fetchPostFailure, fetchPostSuccess } from "../post/postActions";
-import { FETCH_POST_REQUEST } from "../post/postTypes";
+import getPosts from "../../Services/getPosts";
+import { fetchPostsFailure, fetchPostsSuccess } from "../post/postActions";
+import { FETCH_POSTS_REQUEST } from "../post/postTypes";
 
-function* fetchPost(action) {
+function* fetchPosts() {
   try {
-    const apiEndPoint = `https://jsonplaceholder.typicode.com/posts/${action.payload}`;
-    const { data } = yield call(() => axios.get(apiEndPoint));
-    yield put(fetchPostSuccess(data));
+    const { data } = yield call(() => getPosts());
+    yield put(fetchPostsSuccess(data));
   } catch (error) {
-    yield put(fetchPostFailure(error.message));
+    yield put(fetchPostsFailure(error.message));
   }
 }
 
 export function* watchFetchPost() {
-  yield takeEvery(FETCH_POST_REQUEST, fetchPost);
+  yield takeEvery(FETCH_POSTS_REQUEST, fetchPosts);
 }
-
-export function* watchPostPost() {}

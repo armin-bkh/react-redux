@@ -1,15 +1,17 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostRequset, fetchPostSuccess } from "../Redux/post/postActions";
+import { fetchPostsRequset } from "../Redux/post/postActions";
 
 const PostSaga = () => {
-  const [postId, setPostId] = useState("");
-  const { post, loading, error } = useSelector((state) => state.post);
+  const { posts, loading, error } = useSelector((state) => state.post);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPostsRequset());
+  }, []);
 
   const sumbitHandler = (e) => {
     e.preventDefault();
-    dispatch(fetchPostRequset(postId || 1));
   };
 
   return (
@@ -21,17 +23,24 @@ const PostSaga = () => {
           value={postId}
           onChange={(e) => setPostId(e.target.value)}
         />
+        <input
+          type="text"
+          value={postId}
+          onChange={(e) => setPostId(e.target.value)}
+        />
         <button>get post</button>
       </form>
       {loading ? (
         <p>loading...</p>
       ) : error ? (
         <p>{error}</p>
-      ) : post && post.title ? (
-        <>
-          <div>{post.title}</div>
-          <div>{post.body}</div>
-        </>
+      ) : posts && posts.length ? (
+        posts.map((post) => (
+          <div style={{ marginBottom: "10px" }} key={post.id}>
+            <div style={{ marginBottom: "2px" }}>{post.title}</div>
+            <div>{post.body}</div>
+          </div>
+        ))
       ) : (
         <p>fetch some post</p>
       )}

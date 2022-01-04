@@ -1,31 +1,31 @@
 import {
-  FETCH_POST_FAILURE,
-  FETCH_POST_REQUEST,
-  FETCH_POST_SUCCESS,
-  POST_POST_REQUEST,
-  POST_POST_SUCCESS,
+  FETCH_POSTS_FAILURE,
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  POST_POSTS_REQUEST,
+  POST_POSTS_SUCCESS,
 } from "./postTypes";
 
-export const fetchPostRequset = (id) => {
-  return { type: FETCH_POST_REQUEST, payload: id };
+export const fetchPostsRequset = (id) => {
+  return { type: FETCH_POSTS_REQUEST, payload: id };
 };
 
-export const fetchPostSuccess = (post) => {
-  return { type: FETCH_POST_SUCCESS, payload: post };
+export const fetchPostsSuccess = (post) => {
+  return { type: FETCH_POSTS_SUCCESS, payload: post };
 };
 
-export const fetchPostFailure = (error) => {
-  return { type: FETCH_POST_FAILURE, payload: error };
+export const fetchPostsFailure = (error) => {
+  return { type: FETCH_POSTS_FAILURE, payload: error };
 };
 
-export const postPostRequset = (post) => {
-  return { type: POST_POST_REQUEST, payload: post };
+export const postPostsRequset = (post) => {
+  return { type: POST_POSTS_REQUEST, payload: post };
 };
 
-export const postPostSuccess = (post) => {
-  return { type: POST_POST_SUCCESS, payload: post };
+export const postPostsSuccess = (post) => {
+  return { type: POST_POSTS_SUCCESS, payload: post };
 };
 
-export const postPostFailure = (error) => {
-  return { type: POST_POST_REQUEST, payload: error };
+export const postPostsFailure = (error) => {
+  return { type: POST_POSTS_REQUEST, payload: error };
 };

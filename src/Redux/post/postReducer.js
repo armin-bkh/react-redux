@@ -1,31 +1,31 @@
 import {
-  FETCH_POST_FAILURE,
-  FETCH_POST_REQUEST,
-  FETCH_POST_SUCCESS,
-  POST_POST_FAILURE,
-  POST_POST_REQUEST,
-  POST_POST_SUCCESS,
+  FETCH_POSTS_FAILURE,
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  POST_POSTS_FAILURE,
+  POST_POSTS_REQUEST,
+  POST_POSTS_SUCCESS,
 } from "./postTypes";
 
 const initialState = { posts: [], loading: false, error: null };
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_POST_REQUEST: {
-      return { ...state, loading: true, error: null, post: {} };
+    case FETCH_POSTS_REQUEST: {
+      return { ...state, loading: true, error: null, posts: [] };
     }
-    case FETCH_POST_SUCCESS: {
-      return { ...state, loading: false, error: null, post: action.payload };
+    case FETCH_POSTS_SUCCESS: {
+      return { ...state, loading: false, error: null, posts: action.payload };
     }
-    case FETCH_POST_FAILURE: {
-      return { ...state, error: action.payload, post: {}, loading: false };
+    case FETCH_POSTS_FAILURE: {
+      return { ...state, error: action.payload, posts: [], loading: false };
     }
-    case POST_POST_SUCCESS: {
+    case POST_POSTS_SUCCESS: {
       const clonePosts = [...state.posts];
       clonePosts.push(action.payload);
-      return { ...state, error: null, post: clonePosts };
+      return { ...state, error: null, posts: clonePosts };
     }
-    case POST_POST_FAILURE: {
+    case POST_POSTS_FAILURE: {
       return { ...state, error: action.payload };
     }
     default:
