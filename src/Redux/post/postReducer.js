@@ -17,6 +17,8 @@ const postReducer = (state = initialState, action) => {
     case FETCH_POST_FAILURE: {
       return { ...state, error: action.payload, post: null, loading: false };
     }
+    default:
+      return state;
   }
 };
 
