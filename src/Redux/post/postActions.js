@@ -2,6 +2,7 @@ import {
   FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
+  POST_POSTS_FAILURE,
   POST_POSTS_REQUEST,
   POST_POSTS_SUCCESS,
 } from "./postTypes";
@@ -27,5 +28,5 @@ export const postPostsSuccess = (post) => {
 };
 
 export const postPostsFailure = (error) => {
-  return { type: POST_POSTS_REQUEST, payload: error };
+  return { type: POST_POSTS_FAILURE, payload: error };
 };

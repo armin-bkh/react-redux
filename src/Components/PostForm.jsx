@@ -15,12 +15,26 @@ const PostForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(postPostsRequset(formValue));
+    setFormValue({
+      title: "",
+      body: "",
+    });
   };
 
   return (
     <form onSubmit={submitHandler}>
-      <input name="title" type="text" value={postId} onChange={changeHandler} />
-      <input name="body" type="text" value={postId} onChange={changeHandler} />
+      <input
+        name="title"
+        type="text"
+        value={formValue.title}
+        onChange={changeHandler}
+      />
+      <input
+        name="body"
+        type="text"
+        value={formValue.body}
+        onChange={changeHandler}
+      />
       <button>get post</button>
     </form>
   );

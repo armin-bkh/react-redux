@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostsRequset } from "../Redux/post/postActions";
+import PostForm from "./PostForm";
 
 const PostSaga = () => {
   const { posts, loading, error } = useSelector((state) => state.post);
@@ -10,26 +11,10 @@ const PostSaga = () => {
     dispatch(fetchPostsRequset());
   }, []);
 
-  const sumbitHandler = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div>
       <h1>redux-sag middleware</h1>
-      <form onSubmit={sumbitHandler}>
-        <input
-          type="text"
-          value={postId}
-          onChange={(e) => setPostId(e.target.value)}
-        />
-        <input
-          type="text"
-          value={postId}
-          onChange={(e) => setPostId(e.target.value)}
-        />
-        <button>get post</button>
-      </form>
+      <PostForm />
       {loading ? (
         <p>loading...</p>
       ) : error ? (

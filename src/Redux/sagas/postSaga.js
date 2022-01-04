@@ -1,7 +1,13 @@
 import { call, put, takeEvery } from "@redux-saga/core/effects";
 import getPosts from "../../Services/getPosts";
-import { fetchPostsFailure, fetchPostsSuccess } from "../post/postActions";
-import { FETCH_POSTS_REQUEST } from "../post/postTypes";
+import postPost from "../../Services/postPost";
+import {
+  fetchPostsFailure,
+  fetchPostsSuccess,
+  postPostsFailure,
+  postPostsSuccess,
+} from "../post/postActions";
+import { FETCH_POSTS_REQUEST, POST_POSTS_REQUEST } from "../post/postTypes";
 
 function* fetchPosts() {
   try {
@@ -14,4 +20,17 @@ function* fetchPosts() {
 
 export function* watchFetchPost() {
   yield takeEvery(FETCH_POSTS_REQUEST, fetchPosts);
+}
+
+function* postPosts(action) {
+  try {
+    const { data } = yield call(() => postPost(action.payload));
+    yield put(postPostsSuccess(data));
+  } catch (error) {
+    yield put(postPostsFailure(error.message));
+  }
+}
+
+export function* watchPostPost() {
+  yield takeEvery(POST_POSTS_REQUEST, postPosts);
 }
